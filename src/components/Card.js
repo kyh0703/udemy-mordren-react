@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-const Card = ({ id, name, email }) => {
+const Card = ({ monster: { id, name, email } }) => {
   return (
     <div className='card-container' key={id}>
       <img

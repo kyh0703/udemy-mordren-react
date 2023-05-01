@@ -6,27 +6,32 @@ import SearchBox from './components/SearchBox';
 
 const App = () => {
   const [monsters, setMonsters] = useState([]);
+  const [filteredMonsters, setFilterMonsters] = useState(monsters);
   const [searchField, setSearchField] = useState('');
 
-  const fetchUsers = useCallback(async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const users = await response.json();
-    setMonsters(users);
+  console.log('render');
+  useEffect(() => {
+    async function fetchUsers() {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users'
+      );
+      const users = await response.json();
+      setMonsters(users);
+    }
+    fetchUsers();
   }, []);
 
   useEffect(() => {
-    console.log('mount');
-    fetchUsers();
-  }, [fetchUsers]);
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
+    });
+    setFilterMonsters(filteredMonsters);
+  }, [monsters, searchField]);
 
   const onSearchChange = (event) => {
     const searchField = event.target.value.toLocaleLowerCase();
     setSearchField(searchField);
   };
-
-  const filteredMonsters = monsters.filter((monster) => {
-    return monster.name.toLocaleLowerCase().includes(searchField);
-  });
 
   return (
     <div className='App'>
