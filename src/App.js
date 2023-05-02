@@ -1,49 +1,36 @@
-import './App.css';
-import CardList from './components/CardList';
+import './Categories.scss';
+import Directory from './components/directory/Directory';
 
-import React, { useCallback, useEffect, useState } from 'react';
-import SearchBox from './components/SearchBox';
+function App() {
+  const categories = [
+    {
+      id: 1,
+      title: 'hats',
+      imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+    },
+    {
+      id: 2,
+      title: 'jackets',
+      imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+    },
+    {
+      id: 3,
+      title: 'sneakers',
+      imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+    },
+    {
+      id: 4,
+      title: 'womens',
+      imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+    },
+    {
+      id: 5,
+      title: 'mens',
+      imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+    },
+  ];
 
-const App = () => {
-  const [monsters, setMonsters] = useState([]);
-  const [filteredMonsters, setFilterMonsters] = useState(monsters);
-  const [searchField, setSearchField] = useState('');
-
-  console.log('render');
-  useEffect(() => {
-    async function fetchUsers() {
-      const response = await fetch(
-        'https://jsonplaceholder.typicode.com/users'
-      );
-      const users = await response.json();
-      setMonsters(users);
-    }
-    fetchUsers();
-  }, []);
-
-  useEffect(() => {
-    const filteredMonsters = monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(searchField);
-    });
-    setFilterMonsters(filteredMonsters);
-  }, [monsters, searchField]);
-
-  const onSearchChange = (event) => {
-    const searchField = event.target.value.toLocaleLowerCase();
-    setSearchField(searchField);
-  };
-
-  return (
-    <div className='App'>
-      <h1 className='app-title'>Monster Rolodex</h1>
-      <SearchBox
-        className={'card-list'}
-        onChangeHandler={onSearchChange}
-        placeholder={'search monstaer'}
-      />
-      <CardList monsters={filteredMonsters} />
-    </div>
-  );
-};
+  return <Directory categories={categories} />;
+}
 
 export default App;
