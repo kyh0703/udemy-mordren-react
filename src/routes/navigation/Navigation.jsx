@@ -1,6 +1,8 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useContext } from 'react';
 
+import CartIcon from '../../components/cart/CartIcon';
+
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import { UserContext } from '../../contexts/UserContext';
 
@@ -30,6 +32,7 @@ function Navigation(props) {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
       </div>
       <Outlet />
