@@ -4,6 +4,7 @@ import Home from './routes/home/Home';
 import Shop from './routes/shop/Shop';
 import Navigation from './routes/navigation/Navigation';
 import SignIn from './routes/auth/Auth';
+import Checkout from './routes/checkout/Checkout';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='shop' element={<Shop />} />
         <Route path='auth' element={<SignIn />} />
+        <Route path='checkout' element={<Checkout />} />
       </Route>
     </Routes>
   );
