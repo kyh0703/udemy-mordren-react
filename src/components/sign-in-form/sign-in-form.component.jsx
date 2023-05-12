@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import './SignInForm.scss';
+import './sign-in-form.styles.scss';
 
-import FormInput from '../form-input/FormInput';
-import Button from '../button/Button';
+import FormInput from '../form-input/form-input.component';
+import Button from '../button/button.component';
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,

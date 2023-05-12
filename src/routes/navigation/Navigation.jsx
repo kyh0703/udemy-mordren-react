@@ -3,11 +3,11 @@ import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useContext } from 'react';
 
-import CartIcon from '../../components/cart/CartIcon';
-import CartDropDown from '../../components/cart/CartDropDown';
+import CartIcon from '../../components/cart-icon/CartIcon';
+import CartDropDown from '../../components/cart-dropdown/cart-dropdown.component';
 
-import { UserContext } from '../../contexts/UserContext';
-import { CartContext } from '../../contexts/CartContext';
+import { UserContext } from '../../contexts/user.context';
+import { CartContext } from '../../contexts/cart.context';
 
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import { signOutUser } from '../../utils/firebase/Firebase';
