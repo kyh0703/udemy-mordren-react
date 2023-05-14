@@ -1,14 +1,13 @@
 import { useState } from 'react';
 
-import './sign-in-form.styles.scss';
-
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import {
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/Firebase';
+
+import './sign-in-form.styles.scss';
 
 const defaultFormFields = {
   email: '',
@@ -31,11 +30,7 @@ function SignInForm(props) {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error.code) {

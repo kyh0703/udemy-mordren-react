@@ -1,4 +1,6 @@
-import './FormInput.scss';
+import React from 'react';
+
+import './forn-input.styles.scss';
 
 function FormInput({ label, ...otherProps }) {
   return (
