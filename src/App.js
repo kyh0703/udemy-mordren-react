@@ -10,22 +10,15 @@ import Checkout from './routes/checkout/checkout.component';
 import { setCurrentUser } from './store/user/user.action';
 import {
   createUserDocumentFromAuth,
+  getCurrentUser,
   onAuthStateChangedListener,
-} from './utils/firebase/Firebase';
+} from './utils/firebase/firebase.util';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-
-      dispatch(setCurrentUser(user));
-    });
-
-    return unsubscribe;
+    getCurrentUser().then((user) => console.log(user));
   }, []);
 
   return (
