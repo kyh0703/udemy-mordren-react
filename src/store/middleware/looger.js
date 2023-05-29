@@ -11,9 +11,3 @@ export const loggerMiddleware = (store) => (next) => (action) => {
 
   console.log('next state: ', store.getState());
 };
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: ['user'],
-};
