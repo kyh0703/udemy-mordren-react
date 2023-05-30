@@ -1,8 +1,6 @@
-import React from 'react';
+import { FormInputLabel, Input, Group } from './form-input.styles';
 
-import { FormInputLabel, Input, Group } from './forn-input.styles.jsx';
-
-function FormInput({ label, ...otherProps }) {
+const FormInput = ({ label, ...otherProps }) => {
   return (
     <Group>
       <Input {...otherProps} />
@@ -13,6 +11,6 @@ function FormInput({ label, ...otherProps }) {
       )}
     </Group>
   );
-}
+};
 
 export default FormInput;

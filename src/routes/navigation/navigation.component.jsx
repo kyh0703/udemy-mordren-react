@@ -1,14 +1,15 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { selectIsCartOpen } from '../../store/cart/cart.selector';
-import { selectCurrentUser } from '../../store/user/user.selector';
+import { useSelector } from 'react-redux';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
-import CartDropDown from '../../components/cart-dropdown/cart-dropdown.component';
-import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
-import { signOutStart } from '../../store/user/user.action';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+
+import { selectCurrentUser } from '../../store/user/user.selector';
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
+
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 import {
   NavigationContainer,
@@ -17,21 +18,19 @@ import {
   LogoContainer,
 } from './navigation.styles';
 
-function Navigation(props) {
-  const dispatch = useDispatch();
+const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
 
-  const signOutUser = () => dispatch(signOutStart());
-
   return (
-    <>
+    <Fragment>
       <NavigationContainer>
         <LogoContainer to='/'>
-          <CrownLogo className='logo' />
+          <CrwnLogo className='logo' />
         </LogoContainer>
         <NavLinks>
           <NavLink to='/shop'>SHOP</NavLink>
+
           {currentUser ? (
             <NavLink as='span' onClick={signOutUser}>
               SIGN OUT
@@ -41,11 +40,11 @@ function Navigation(props) {
           )}
           <CartIcon />
         </NavLinks>
-        {isCartOpen && <CartDropDown />}
+        {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
-    </>
+    </Fragment>
   );
-}
+};
 
 export default Navigation;

@@ -1,24 +1,23 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectCartItems } from '../../store/cart/cart.selector';
 import {
+  clearItemFromCart,
   addItemToCart,
   removeItemFromCart,
-  clearItemFromCart,
 } from '../../store/cart/cart.action';
+import { selectCartItems } from '../../store/cart/cart.selector';
 
 import {
   CheckoutItemContainer,
   ImageContainer,
-  Arrow,
   BaseSpan,
   Quantity,
-  RemoveButton,
+  Arrow,
   Value,
+  RemoveButton,
 } from './checkout-item.styles';
 
-function CheckOutItem({ cartItem }) {
+const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
@@ -34,16 +33,16 @@ function CheckOutItem({ cartItem }) {
       <ImageContainer>
         <img src={imageUrl} alt={`${name}`} />
       </ImageContainer>
-      <BaseSpan>{name}</BaseSpan>
+      <BaseSpan> {name} </BaseSpan>
       <Quantity>
         <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
         <Value>{quantity}</Value>
         <Arrow onClick={addItemHandler}>&#10095;</Arrow>
       </Quantity>
-      <BaseSpan>{price}</BaseSpan>
+      <BaseSpan> {price}</BaseSpan>
       <RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
-}
+};
 
-export default CheckOutItem;
+export default CheckoutItem;

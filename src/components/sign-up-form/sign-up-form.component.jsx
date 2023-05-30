@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.components';
-import { signUpStart } from '../../store/user/user.action';
+import Button from '../button/button.component';
+
+import {
+  createAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
+} from '../../utils/firebase/firebase.utils';
 
 import { SignUpContainer } from './sign-up-form.styles';
 
@@ -14,8 +17,7 @@ const defaultFormFields = {
   confirmPassword: '',
 };
 
-function SignUpForm(props) {
-  const dispatch = useDispatch();
+const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -32,13 +34,18 @@ function SignUpForm(props) {
     }
 
     try {
-      dispatch(signUpStart(email, password, displayName));
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('Cannot create user, email already in use');
       } else {
-        console.log('user created encounterd an error', error);
+        console.log('user creation encountered an error', error);
       }
     }
   };
@@ -51,8 +58,8 @@ function SignUpForm(props) {
 
   return (
     <SignUpContainer>
-      <h2>Don't have an accound?</h2>
-      <span>Sign up with your email end password</span>
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label='Display Name'
@@ -82,19 +89,17 @@ function SignUpForm(props) {
         />
 
         <FormInput
-          label='ConfirmPassword'
+          label='Confirm Password'
           type='password'
           required
           onChange={handleChange}
           name='confirmPassword'
           value={confirmPassword}
         />
-        <Button buttonType='inverted' type='submit'>
-          Sign Up
-        </Button>
+        <Button type='submit'>Sign Up</Button>
       </form>
     </SignUpContainer>
   );
-}
+};
 
 export default SignUpForm;

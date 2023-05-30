@@ -1,11 +1,9 @@
-import React from 'react';
-
-import ProductCard from '../product-card/product-cart.component';
+import ProductCard from '../product-card/product-card.component';
 
 import {
   CategoryPreviewContainer,
-  Preview,
   Title,
+  Preview,
 } from './category-preview.styles';
 
 const CategoryPreview = ({ title, products }) => {

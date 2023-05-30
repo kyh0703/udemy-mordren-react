@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -6,7 +5,7 @@ import {
   selectCartTotal,
 } from '../../store/cart/cart.selector';
 
-import CheckOutItem from '../../components/checkout-item/checkout-item.component';
+import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 
 import {
   CheckoutContainer,
@@ -15,7 +14,7 @@ import {
   Total,
 } from './checkout.styles';
 
-function Checkout(props) {
+const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
@@ -26,7 +25,7 @@ function Checkout(props) {
           <span>Product</span>
         </HeaderBlock>
         <HeaderBlock>
-          <span>Descriptionn</span>
+          <span>Description</span>
         </HeaderBlock>
         <HeaderBlock>
           <span>Quantity</span>
@@ -39,11 +38,11 @@ function Checkout(props) {
         </HeaderBlock>
       </CheckoutHeader>
       {cartItems.map((cartItem) => (
-        <CheckOutItem key={cartItem.id} cartItem={cartItem} />
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>Total: ${cartTotal}</Total>
     </CheckoutContainer>
   );
-}
+};
 
 export default Checkout;
