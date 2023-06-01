@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initalState = {
+const initialState = {
   categories: [],
 };
 
 export const categoriesSlice = createSlice({
   name: 'categories',
-  initalState,
+  initialState,
   reducers: {
     setCategories(state, action) {
       state.categories = action.payload;
@@ -16,4 +16,4 @@ export const categoriesSlice = createSlice({
 
 export const { setCategories } = categoriesSlice.actions;
 
-export const categoriesReducer = categoriesSlice.reducers;
+export const categoriesReducer = categoriesSlice.reducer;

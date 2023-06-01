@@ -69,4 +69,4 @@ export const {
   clearItemFromCart,
 } = cartSlice.actions;
 
-export const cartReducer = cartSlice.reducers;
+export const cartReducer = cartSlice.reducer;
