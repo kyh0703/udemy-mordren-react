@@ -7,6 +7,7 @@ import {
 } from '../../store/cart/cart.selector';
 
 import CheckOutItem from '../../components/checkout-item/checkout-item.component';
+import PaymentForm from '../../components/payment-form/payment-form.component';
 
 import {
   CheckoutContainer,
@@ -42,6 +43,7 @@ function Checkout(props) {
         <CheckOutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>Total: ${cartTotal}</Total>
+      <PaymentForm />
     </CheckoutContainer>
   );
 }
