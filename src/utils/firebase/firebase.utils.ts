@@ -81,7 +81,7 @@ export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   );
 };
 
-export type AdditionalInfomation = {
+export type AdditionalInformation = {
   displayName?: string;
 };
 
@@ -93,7 +93,7 @@ export type UserData = {
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,
-  additionalInfomation = {} as AdditionalInfomation
+  additionalInfomation = {} as AdditionalInformation
 ): Promise<void | QueryDocumentSnapshot<UserData>> => {
   if (!userAuth) return;
 
