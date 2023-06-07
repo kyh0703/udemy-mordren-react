@@ -17,7 +17,7 @@ import {
   LogoContainer,
 } from './navigation.styles';
 
-function Navigation(props) {
+const Navigation = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
@@ -46,6 +46,6 @@ function Navigation(props) {
       <Outlet />
     </>
   );
-}
+};
 
 export default Navigation;
